@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: whatsapp-clone
+  datasource:
+    url: jdbc:postgresql://localhost:5432/whatsapp-clone
+    username: sa
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    enabled: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9090/realms/whatsapp-clone
+  servlet:
+    multipart:
+      max-file-size: 10MB
+
+springdoc:
+  default-produces-media-type: application/json
+---
+application:
+  file:
+    uploads:
+      media-output-path: ./uploads
