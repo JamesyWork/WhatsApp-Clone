@@ -1,0 +1,76 @@
+/* You can add global styles to this file, and also import other style files */
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+@import "@ctrl/ngx-emoji-mart/picker";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #CCC;
+}
+
+.background-blue {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 20%;
+  background: #69bfe2;
+}
+
+.color-blue-gray {
+  color: #56869b;
+}
+
+.gray-bg {
+  background-color: #F0F2F5;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.user-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: solid 1.5px #56869b;
+  overflow: hidden;
+  padding: 7px;
+
+  > img {
+    width: 100%;
+  }
+}
+
+.online-status {
+  background-color: #1EA885;
+  min-width: 10px;
+  max-width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.offline-status {
+  background-color: #CACACA;
+  min-width: 10px;
+  max-width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
