@@ -19,11 +19,15 @@ import lombok.Setter;
 @NamedQueries(value = {
         @NamedQuery(
                 name = MessageConstants.FIND_MESSAGES_BY_CHAT_ID,
-                query = "SELECT m FROM Message m WHERE m.chat.id = :chatId order by m.createdDate"
+                query = "SELECT m FROM Message m WHERE m.chat.id = :chatId ORDER BY m.createdDate"
         ),
         @NamedQuery(
                 name = MessageConstants.SET_MESSAGES_TO_SEEN_BY_CHAT,
                 query = "UPDATE Message SET state = :newState WHERE chat.id = :chatId"
+        ),
+        @NamedQuery(
+                name = MessageConstants.FIND_LAST_MESSAGE_BY_CHAT_ID,
+                query = "SELECT m FROM Message m WHERE m.chat.id = :chatId ORDER BY createdDate DESC LIMIT 1"
         )
 })
 public class Message extends BaseAuditingEntity {
