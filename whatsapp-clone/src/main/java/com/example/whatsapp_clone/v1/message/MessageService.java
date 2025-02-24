@@ -66,18 +66,20 @@ public class MessageService {
     }
 
     @Transactional
-    public void seMessageToSeen(String chatId, Authentication auth){
+    public void setMessageToSeen(String chatId, Authentication auth){
         Chat chat = chatRepository.findById(chatId).orElseThrow(() -> new EntityNotFoundException("Chat not found"));
         final String recipientId = getRecipientId(chat, auth);
-        messageRepository.setMessagesToSeenByChatId(chatId, MessageState.SEEN);
-
-        Notification notification = Notification.builder()
-                .chatId(chat.getId())
-                .type(NotificationType.SEEN)
-                .senderId(getSenderId(chat, auth))
-                .receiverId(recipientId)
-                .build();
-        notificationService.sendNotification(recipientId, notification);
+        Message message = messageRepository.findLastMessageByChatIdAndReceiverId(chatId);
+        if(message.getReceiverId().equals(auth.getName())) {
+            messageRepository.setMessagesToSeenByChatId(chatId, MessageState.SEEN);
+            Notification notification = Notification.builder()
+                    .chatId(chat.getId())
+                    .type(NotificationType.SEEN)
+                    .senderId(getSenderId(chat, auth))
+                    .receiverId(recipientId)
+                    .build();
+            notificationService.sendNotification(recipientId, notification);
+        }
     }
 
     @Transactional

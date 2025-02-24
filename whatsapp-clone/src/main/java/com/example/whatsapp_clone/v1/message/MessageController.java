@@ -39,11 +39,11 @@ public class MessageController {
 
     @PatchMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void setMessageService(
+    public void setMessageToSeen(
             @RequestParam("chat-id") String chatId,
             Authentication auth
     ) {
-        messageService.seMessageToSeen(chatId, auth);
+        messageService.setMessageToSeen(chatId, auth);
     }
 
     @GetMapping("chat/{chat-id}")
